@@ -7,6 +7,6 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class RoleDto {
-    private Long id;
+    private long id;
     private String name;
 }

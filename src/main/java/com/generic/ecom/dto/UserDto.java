@@ -10,7 +10,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto{
-    private Long id;
+    private long id;
     private String username;
     private String password;
     private Collection<RoleDto> roles;

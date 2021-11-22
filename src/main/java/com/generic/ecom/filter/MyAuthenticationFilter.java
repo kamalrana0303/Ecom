@@ -4,7 +4,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.generic.ecom.entity.User;
+import com.generic.ecom.request.UserRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,11 +34,13 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         this.authenticationManager=authenticationManager;
     }
 
+    @SneakyThrows
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-       String username= request.getParameter("username");
-       String password= request.getParameter("password");
-       UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(username, password);
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException{
+
+       ObjectMapper objectMapper= new ObjectMapper();
+       UserRequest userRequest = objectMapper.readValue(request.getInputStream(), UserRequest.class);
+       UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword());
        return authenticationManager.authenticate(authenticationToken);
     }
 
