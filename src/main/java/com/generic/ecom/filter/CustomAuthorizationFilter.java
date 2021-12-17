@@ -24,7 +24,7 @@ import java.util.*;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 @Slf4j
-public class CustomAuthorizationFilter extends OncePerRequestFilter {
+public class  CustomAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         if(request.getServletPath().equals("/user/login") || request.getServletPath().equals("/user/refresh") || request.getServletPath().equals("/user/all") || request.getServletPath().equals("/cart/add")){

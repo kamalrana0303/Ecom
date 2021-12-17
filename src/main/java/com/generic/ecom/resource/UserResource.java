@@ -30,6 +30,7 @@ public class UserResource {
 
     @GetMapping("all")
     public ResponseEntity<List<User>> getAllUsers(){
+        System.out.println("request is requested...............................");
         return  ResponseEntity.ok().body(new ModelMapper().map(userService.getUsers(),new TypeToken<List<UserDto>>(){}.getType()));
     }
 

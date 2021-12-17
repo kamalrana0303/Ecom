@@ -1,6 +1,7 @@
 package com.generic.ecom.web;
 
 import com.generic.ecom.service.impl.RoleServiceImpl;
+import com.mysql.jdbc.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;

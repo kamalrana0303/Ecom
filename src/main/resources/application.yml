@@ -1,11 +1,42 @@
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/generic?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  jpa:
+    hibernate.ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    show-sql: true
+    defer-datasource-initialization=true:
 server:
   port: 8080
-spring:
-  application:
-    name: AUTHORIZATION-SERVICE
+  ssl:
+    keyStore: classpath:keystore.p12    #store the information about server i.e current node (private and public keys)
+    trustStore: classpath:truststore.jks  #store the information about other parties i.e other node (public keys)
+    keyStorePassword: serverpassword
+    trustStorePassword: storepassword
+    keyStoreType: PKCS12
+    trustStoreType: JKS
+    clientAuth: NEED
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+
+
+
+
+#eureka:
+#  client:
+#    register-with-eureka: true
+
+#    fetch-registry: true
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+#server:
+#  port: 8080
+#spring:
+#  application:
+#    name: API-GATEWAY`
